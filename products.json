@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Product 1",
+        "link": "https://example.com/product1",
+        "image": "https://via.placeholder.com/150",
+        "ad_link": "https://example.com/ad1"
+    },
+    {
+        "name": "Product 2",
+        "link": "https://example.com/product2",
+        "image": "https://via.placeholder.com/150",
+        "ad_link": "https://example.com/ad2"
+    },
+    {
+        "name": "Product 3",
+        "link": "https://example.com/product3",
+        "image": "https://via.placeholder.com/150",
+        "ad_link": "https://example.com/ad3"
+    }
+]

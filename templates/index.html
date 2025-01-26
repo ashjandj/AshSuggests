@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ash suggests</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .product-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 8px;
+        text-align: center;
+      }
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner">
+        <a href="#" class="button">Let's Explore</a>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <img class = "cardimages" src="https://rukminim2.flixcart.com/image/416/416/kuof5ow0/stuffed-toy/x/y/p/4-ft-soft-pink-color-teddy-bear-for-gift-to-someone-special-as-3-original-imag7qzenarxxwtj.jpeg?q=70&crop=false">
+          <h2>Card 1</h2>
+          <p>Details about Card 1.</p>
+        </div>
+        <div class="card">
+          <img src="">
+          <h2>Card 2</h2>
+          <p>Details about Card 2.</p>
+        </div>
+        <div class="card">
+          <img src="">
+          <h2>Card 3</h2>
+          <p>Details about Card 3.</p>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for products...">
+      </div>
+      <div id="productResults" class="product-results"></div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Static list of products for testing (replace this with your dynamic data if necessary)
+        const products = [
+          { "name": "Product 1", "link": "https://example.com/product1", "image": "https://via.placeholder.com/150", "ad_link": "https://example.com/ad1" },
+          { "name": "Product 2", "link": "https://example.com/product2", "image": "https://via.placeholder.com/150", "ad_link": "https://example.com/ad2" },
+          { "name": "Product 3", "link": "https://example.com/product3", "image": "https://via.placeholder.com/150", "ad_link": "https://example.com/ad3" }
+        ];
+
+        // Function to render product cards
+        function renderProducts(products) {
+          const resultsContainer = $("#productResults");
+          resultsContainer.empty();
+          if (products.length > 0) {
+            products.forEach((product) => {
+              const productCard = `
+                <div class="product-card">
+                  <h3>${product.name}</h3>
+                  <a href="${product.link}" target="_blank">
+                    <img src="${product.image}" alt="${product.name}">
+                  </a>
+                  <p><a href="${product.ad_link}" target="_blank">View Ad</a></p>
+                </div>
+              `;
+              resultsContainer.append(productCard);
+            });
+          } else {
+            resultsContainer.html("<p>No products found.</p>");
+          }
+        }
+
+        // Load all products initially
+        renderProducts(products);
+
+        // Dynamically filter products while typing
+        $("#searchInput").on("input", function () {
+          const query = $(this).val().toLowerCase();
+          console.log("Search query:", query); // Log the query for debugging
+
+          // Filter products by name, link, or ad_link
+          const filteredData = products.filter(product =>
+            product.name.toLowerCase().includes(query) ||
+            product.link.toLowerCase().includes(query) ||
+            product.ad_link.toLowerCase().includes(query)
+          );
+          
+          renderProducts(filteredData);
+        });
+      });
+    </script>
+  </body>
+</html>
